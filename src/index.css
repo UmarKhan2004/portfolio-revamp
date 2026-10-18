@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens
+   Palette:
+     --color-base      #0A0E17  page background (deep navy-charcoal, not pure black)
+     --color-surface    #121826  card / panel background
+     --color-surface-2  #1A2233  raised surface / hover state
+     --color-line       #232C40  hairline borders
+     --color-text        #E9ECF3  primary text
+     --color-muted        #8891A6  secondary text
+     --color-react         #5EEAD4  teal — React / frontend thread
+     --color-django        #34D399  emerald — Django / backend thread
+                            (kept distinct from react teal by hue shift)
+     --color-amber          #F5B84C  commit / signature accent
+------------------------------------------------------------------- */
+@theme {
+  --color-base: #0a0e17;
+  --color-surface: #121826;
+  --color-surface-2: #1a2233;
+  --color-line: #232c40;
+  --color-text: #e9ecf3;
+  --color-muted: #8891a6;
+  --color-react: #5eead4;
+  --color-django: #34d399;
+  --color-amber: #f5b84c;
+
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-base);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: var(--color-amber);
+    color: var(--color-base);
+  }
+
+  /* Visible keyboard focus, kept consistent everywhere */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-base);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-surface-2);
+  }
+}
+
+@layer utilities {
+  .font-mono-tag {
+    font-family: var(--font-mono);
+  }
+
+  /* subtle noise/grid backdrop used behind the hero */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(233, 236, 243, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(233, 236, 243, 0.045) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, var(--color-react), var(--color-django));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
