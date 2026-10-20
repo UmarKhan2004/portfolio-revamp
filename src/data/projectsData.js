@@ -18,7 +18,7 @@ export const projectsData = [
     techStack: ['React', 'Tailwind CSS'], 
     liveLink: "https://uhud-developers.vercel.app/?utm_source=chatgpt.com", 
     githubLink: 'https://github.com/UmarKhan2004/Uhud-Developers', 
-    image: "uhud-developers.png", 
+    image: "uhud-developer.png", 
     featured: true,
   },
 
